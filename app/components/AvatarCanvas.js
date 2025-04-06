@@ -4,14 +4,14 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, useGLTF, ContactShadows } from '@react-three/drei'
 import { useEffect, useRef, useState, useCallback } from 'react'
 import * as THREE from 'three'
+import { useIsMobile } from '@/app/hooks/useIsMobile'
 
-function AnimatedAvatar({ triggerAnimation }) {
+function AnimatedAvatar({ play }) {
     const group = useRef()
     const { scene, animations } = useGLTF('/avatar_animated.glb')
     const mixer = useRef(null)
     const action = useRef(null)
 
-    // Setup animation once
     useEffect(() => {
         if (scene && animations.length) {
             mixer.current = new THREE.AnimationMixer(scene)
@@ -19,16 +19,14 @@ function AnimatedAvatar({ triggerAnimation }) {
             anim.clampWhenFinished = true
             anim.loop = THREE.LoopOnce
             action.current = anim
-            anim.play()
         }
     }, [scene, animations])
 
-    // Trigger animation when needed
     useEffect(() => {
-        if (triggerAnimation && action.current) {
+        if (play && action.current) {
             action.current.reset().play()
         }
-    }, [triggerAnimation])
+    }, [play])
 
     useFrame((_, delta) => {
         mixer.current?.update(delta)
@@ -39,7 +37,7 @@ function AnimatedAvatar({ triggerAnimation }) {
             ref={group}
             scale={1.5}
             position={[0, -1.5, 0]}
-            rotation={[-0.1, 0, 0]} // tilt upward toward laptop user
+            rotation={[-0.1, 0, 0]}
         >
             <primitive object={scene} />
         </group>
@@ -47,17 +45,20 @@ function AnimatedAvatar({ triggerAnimation }) {
 }
 
 export default function AvatarCanvas() {
-    const [shouldAnimate, setShouldAnimate] = useState(false)
+    const [playAnimation, setPlayAnimation] = useState(false)
     const containerRef = useRef(null)
-    const [hasEntered, setHasEntered] = useState(false)
+    const isMobile = useIsMobile()
 
-    // Scroll into view = play animation once
+    // Responsive adjustments
+    const scale = isMobile ? 1 : 1.5
+    const position = isMobile ? [0, -1.2, 0] : [0, -1.5, 0]
+
+    // Animate when in view
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
-                if (entry.isIntersecting && !hasEntered) {
-                    setHasEntered(true)
-                    setShouldAnimate(true)
+                if (entry.isIntersecting) {
+                    triggerAnimation()
                 }
             },
             { threshold: 0.6 }
@@ -67,24 +68,28 @@ export default function AvatarCanvas() {
         return () => {
             if (containerRef.current) observer.unobserve(containerRef.current)
         }
-    }, [hasEntered])
-
-    // Hover handler
-    const handleHover = useCallback(() => {
-        setShouldAnimate(true)
-        setTimeout(() => setShouldAnimate(false), 100) // allow retrigger
     }, [])
+
+    const triggerAnimation = useCallback(() => {
+        setPlayAnimation(true)
+        setTimeout(() => setPlayAnimation(false), 100) // allow reset
+    }, [])
+
+    const handleInteraction = () => {
+        triggerAnimation()
+    }
 
     return (
         <div
             ref={containerRef}
+            onMouseEnter={handleInteraction}
+            onClick={handleInteraction} // mobile support
+            className="w-full mx-auto"
             style={{
-                height: '600px',
-                maxWidth: '450px',
-                margin: '0 auto',
+                height: isMobile ? '350px' : '600px',
+                maxWidth: isMobile ? '100%' : '450px',
                 cursor: 'pointer',
             }}
-            onMouseEnter={handleHover}
         >
             <Canvas
                 camera={{ position: [0, 2.2, 5.5], fov: 30 }}
@@ -95,23 +100,14 @@ export default function AvatarCanvas() {
                 <ambientLight intensity={1.2} />
                 <directionalLight position={[3, 4, 2]} intensity={1.5} castShadow />
                 <spotLight position={[0, 5, 10]} angle={0.3} penumbra={1} intensity={0.5} />
-
-                <ContactShadows
-                    position={[0, -1.6, 0]}
-                    opacity={0.4}
-                    scale={6}
-                    blur={1.5}
-                    far={2}
-                />
-
+                <ContactShadows position={[0, -1.6, 0]} opacity={0.4} scale={6} blur={1.5} far={2} />
                 <OrbitControls
                     enableZoom={false}
                     enablePan={false}
                     maxPolarAngle={Math.PI / 2.2}
                     minPolarAngle={Math.PI / 2.5}
                 />
-
-                <AnimatedAvatar triggerAnimation={shouldAnimate} />
+                <AnimatedAvatar play={playAnimation} />
             </Canvas>
         </div>
     )

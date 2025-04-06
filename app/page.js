@@ -8,6 +8,7 @@ import Navbar from "@/app/components/Navbar";
 import Resume from "@/app/components/Resume";
 import Projects from "@/app/components/project";
 import BlogPage from "@/app/components/Blog";
+import Preloader from "@/app/components/Preloader";
 
 export default function Home() {
 
@@ -33,6 +34,7 @@ export default function Home() {
 
     return (
         <>
+            <Preloader/>
             <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode}/>
             <Header isDarkMode={isDarkMode} />
             <About isDarkMode={isDarkMode} />

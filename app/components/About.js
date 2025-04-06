@@ -1,5 +1,5 @@
 "use client"
-import { assets, infoList} from '@/assets/assets'
+import { assets, infoList } from '@/assets/assets'
 import Image from "next/image";
 import React from 'react'
 import { motion } from "framer-motion"
@@ -9,7 +9,7 @@ const About = ({ isDarkMode }) => {
     return (
         <motion.section
             id="about"
-            className="w-full px-6 sm:px-12 lg:px-[12%] py-16 scroll-mt-20"
+            className="w-full px-6 sm:px-12 lg:px-[12%] py-16 scroll-mt-28 md:scroll-mt-20 lg:scroll-mt-16"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1 }}
@@ -20,7 +20,7 @@ const About = ({ isDarkMode }) => {
                     initial={{ opacity: 0, y: -20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
-                    className="text-4xl md:text-5xl font-Outfit font-bold text-gray-900 dark:text-white"
+                    className="text-4xl md:text-5xl font-Outfit font-bold text-gray-900 dark:text-white mt-20 sm:mt-32 mb-12"
                 >
                     About Me
                 </motion.h2>
@@ -54,28 +54,31 @@ const About = ({ isDarkMode }) => {
 
                     {/* Highlights Grid */}
                     <motion.ul
-                        initial={{opacity: 0}}
-                        whileInView={{opacity: 1}}
-                        transition={{duration: 0.8, delay: 1}}
-                        className='grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl'>
-                        {infoList.map(({icon, iconDark, title, description}, index)=>(
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ duration: 0.8, delay: 1 }}
+                        className='grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl'
+                    >
+                        {infoList.map(({ icon, iconDark, title, description }, index) => (
                             <motion.li
-                                whileHover={{scale: 1.05}}
+                                whileHover={{ scale: 1.05 }}
                                 className='border-[0.5px] border-gray-400 rounded-xl py-2 px-4 cursor-pointer hover:bg-lightHover hover:-translate-y-1 duration-500 hover:shadow-black dark:border-white dark:hover:shadow-white dark:hover:bg-darkHover/50'
-                                key={index}>
-                                <Image src={isDarkMode ? iconDark : icon} alt={title} className='w-7 mt-3'/>
+                                key={index}
+                            >
+                                <Image src={isDarkMode ? iconDark : icon} alt={title} className='w-7 mt-3' />
                                 <h3 className='my-4 font-semibold text-gray-700 dark:text-white'>{title}</h3>
                                 <p className='text-gray-600 text-sm dark:text-white/80'>{description}</p>
                             </motion.li>
                         ))}
                     </motion.ul>
+
                     {/* Interests Section */}
                     <div className="mt-6 text-center text-gray-600 dark:text-gray-400">
                         <p className="italic font-Ovo">Outside of coding, you’ll often find me:</p>
                         <ul className="flex flex-wrap justify-center gap-3 mt-3 text-sm">
-                            <li className="bg-gray-100 dark:bg-darkHover px-3 py-1 rounded-full font-Ovo ">🏋️‍♂️ Going to the gym</li>
-                            <li className="bg-gray-100 dark:bg-darkHover px-3 py-1 rounded-full font-Ovo">🎮 Playing computer games and 🏏 sports </li>
-                            <li className="bg-gray-100 dark:bg-darkHover px-3 py-1 rounded-full font-Ovo"> Travelling</li>
+                            <li className="bg-gray-100 dark:bg-darkHover px-3 py-1 rounded-full font-Ovo">🏋️‍♂️ Going to the gym</li>
+                            <li className="bg-gray-100 dark:bg-darkHover px-3 py-1 rounded-full font-Ovo">🎮 Playing computer games and 🏏 sports</li>
+                            <li className="bg-gray-100 dark:bg-darkHover px-3 py-1 rounded-full font-Ovo">🌍 Travelling</li>
                         </ul>
                     </div>
                 </motion.div>
@@ -88,7 +91,7 @@ const About = ({ isDarkMode }) => {
                     className="flex justify-center items-center w-full lg:w-[40%] min-h-[400px] -mt-16"
                     suppressHydrationWarning
                 >
-                    <div className="w-full max-w-sm -mt-10">
+                    <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-sm -mt-10">
                         <AvatarCanvas />
                     </div>
                 </motion.div>

@@ -26,7 +26,7 @@ const projects = [
             "A personal portfolio with 3D animated avatar using React Three Fiber and Framer Motion.",
         tech: ["Next.js", "Tailwind", "React Three Fiber"],
         github: "https://github.com/harshjaiswal2001/Portfolio",
-        live: "",
+        live: "https://portfolio-harsh-jaiswal.vercel.app/",
         image: portfolioImg,
     },
     {
