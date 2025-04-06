@@ -29,7 +29,7 @@ export default function BlogPage() {
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1 }}
             viewport={{ once: true }}
-            className='py-20 bg-white dark:bg-gray-900 scroll-mt-20 bg-[url("/footer-bg-color.png")] bg-no-repeat bg-center bg-[length:90%_auto] dark:bg-none'
+            className='py-20 scroll-mt-20 bg-[url("/footer-bg-color.png")] bg-no-repeat bg-center bg-[length:90%_auto] dark:bg-none'
         >
             <div className="max-w-6xl mx-auto px-6">
                 {/* Heading */}

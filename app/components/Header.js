@@ -24,7 +24,7 @@ const Header = () => {
     }, []);
 
     return (
-        <div className="w-11/12 max-w-4xl mx-auto h-screen flex flex-col items-center justify-center text-center gap-6 px-4">
+        <div className="w-11/12 max-w-4xl mx-auto h-screen flex flex-col items-center justify-center text-center gap-6 px-4 pt-16 ">
 
             {/* Profile Image */}
             <motion.div
@@ -106,16 +106,12 @@ const Header = () => {
 
                 {/* Resume Button */}
                 <motion.a
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 1 }}
+                    initial={{y: 30, opacity: 0}}
+                    whileInView={{y: 0, opacity: 1}}
+                    transition={{duration: 0.6, delay: 1.2}}
                     href="/harsh_resume_sde.pdf" download
-                    className="font-Outfit px-8 py-3 rounded-full border border-gray-400 text-gray-800
-          dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 hover:scale-105 hover:shadow-lg transition-all duration-300 shadow-md flex items-center gap-2"
-                >
-                    My Resume
-                    <Image src={assets.download_icon} alt="📥" className="w-4" />
-                </motion.a>
+                    className='px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2 bg-white dark:text-black'>
+                    my resume <Image src={assets.download_icon} alt='' className='w-4'/></motion.a>
             </div>
         </div>
     );

@@ -189,25 +189,6 @@ export const toolsData = [
     assets.webstorm_icon, assets.vscode, assets.mongodb, assets.figma, assets.git,assets.postman_icon
 ];
 
-// components/data/projects.ts
- const projects = [
-    {
-        title: "Smart Attendance System",
-        description: "Geofencing and Face Recognition based attendance system with real-time validation and dashboard.",
-        tech: ["React", "Next.js", "Tailwind", "Firebase"],
-        github: "https://github.com/your-username/attendance-system",
-        live: "https://attendance-system.vercel.app",
-        image: "attendance_project"
-    },
-    {
-        title: "3D Portfolio Website",
-        description: "A personal portfolio with 3D animated avatar using React Three Fiber and Framer Motion.",
-        tech: ["Next.js", "Tailwind", "React Three Fiber"],
-        github: "https://github.com/your-username/3d-portfolio",
-        live: "",
-        image: "portfolio_project"
-    },
-];
 
 
 

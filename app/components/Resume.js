@@ -20,13 +20,17 @@ const fadeInUp = {
     }),
 };
 
-const Resume = () => {
+const Resume = ({isDarkMode}) => {
     return (
         <section
             id="resume"
-            className="py-20 px-6 md:px-12 lg:px-[12%] bg-white dark:bg-gray-900 scroll-mt-20 bg-[url('/footer-bg-color.png')] bg-no-repeat bg-center bg-[length:90%_auto] dark:bg-none"
+            className="py-20 px-6 md:px-12 lg:px-[12%]
+    scroll-mt-32
+    bg-[url('/footer-bg-color.png')] dark:bg-none
+    bg-no-repeat bg-center bg-[length:90%_auto]"
         >
-            {/* Resume Heading */}
+
+        {/* Resume Heading */}
             <motion.h2
                 className="text-4xl font-bold text-center text-gray-800 dark:text-white mb-16 font-Outfit"
                 initial="hidden"
