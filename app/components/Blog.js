@@ -113,6 +113,23 @@ export default function BlogPage() {
                         </button>
                     ))}
                 </motion.div>
+
+                {/* Stylish Medium Button */}
+                <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.8, duration: 0.5 }}
+                    className="text-center mt-10"
+                >
+                    <a
+                        href="https://medium.com/@harshjaiswal2001"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-6 py-3  bg-blue-500 rounded-full shadow-md hover:scale-105 transition-transform font-medium"
+                    >
+                        📖 View All Blogs on Medium
+                    </a>
+                </motion.div>
             </div>
         </motion.section>
     );
