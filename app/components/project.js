@@ -39,15 +39,7 @@ const projects = [
         live: "",
         image: carwashImg,
     },
-    {
-        title: "Nexus Blog API (Backend)",
-        description:
-            "A powerful RESTful API for the Nexus Blog platform built using Node.js, Express, and MongoDB. It handles user authentication, blog CRUD operations, and secure content delivery.",
-        tech: ["Node.js", "Express", "MongoDB", "JWT", "Cloudinary"],
-        github: "https://github.com/harshjaiswal2001/Nexus-Blog-App_Backend",
-        live: "",
-        image: nexus,
-    },
+
     {
         title: "Immverse.AI Landing Page",
         description:
@@ -56,6 +48,15 @@ const projects = [
         github: "https://github.com/harshjaiswal2001/Immverse.ai",
         live: "https://immverse-ai-landing-page-hj.vercel.app/",
         image: immverse,
+    },
+    {
+        title: "Nexus Blog API (Backend)",
+        description:
+            "A powerful RESTful API for the Nexus Blog platform built using Node.js, Express, and MongoDB. It handles user authentication, blog CRUD operations, and secure content delivery.",
+        tech: ["Node.js", "Express", "MongoDB", "JWT", "Cloudinary"],
+        github: "https://github.com/harshjaiswal2001/Nexus-Blog-App_Backend",
+        live: "",
+        image: nexus,
     },
 ];
 
